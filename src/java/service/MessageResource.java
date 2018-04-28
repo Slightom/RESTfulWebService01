@@ -16,5 +16,12 @@ public class MessageResource {
     @Produces(MediaType.APPLICATION_XML)
     public List<Message> getText() {
         return messageService.getAllMessages();
-    } 
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getJsons")
+    public List<Message> getText2() {
+        return messageService.getAllMessages();
+    }
 }
