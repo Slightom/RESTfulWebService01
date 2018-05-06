@@ -10,11 +10,15 @@ public class MessageResource {
 
     static private Map<Long, Message> messages = new HashMap<Long, Message>();
     private long idCounter = 0L;
-    
+
     public MessageResource() {
         messages.put(generateId(), new Message(idCounter, "Pierwsza wiadomość", "Tomek"));
         messages.put(generateId(), new Message(idCounter, "Druga wiadomość", "Romek"));
         messages.put(generateId(), new Message(idCounter, "Trzecia wiadomość", "Atomek"));
+    }
+
+    private long generateId() {
+        return ++idCounter;
     }
 
     public List<Message> getAllMessages() {
@@ -28,11 +32,12 @@ public class MessageResource {
     public Message createMessage(Message message) {
         message.setId(generateId());
         messages.put(message.getId(), message);
-        
+
         return messages.get(message.getId());
     }
 
-    private long generateId(){
-        return ++idCounter;
+    public Message updateMessage(Message message) {
+        messages.put(message.getId(), message);
+        return messages.get(message.getId());
     }
 }
