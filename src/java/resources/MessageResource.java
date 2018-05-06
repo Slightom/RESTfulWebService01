@@ -1,24 +1,28 @@
 package resources;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.Message;
 
-
 public class MessageResource {
-    private List<Message> list = new ArrayList<>();
-    
-    public MessageResource(){
-        Message m1 = new Message(1L, "Pierwsza wiadomość", "Tomek");
-        Message m2 = new Message(2L, "Druga wiadomość", "Romek");
-        Message m3 = new Message(3L, "Trzecia wiadomość", "Atomek");
-    
-        list.add(m1);
-        list.add(m2);
-        list.add(m3);
+
+    static private Map<Long, Message> messages = new HashMap<Long, Message>();
+
+    public MessageResource() {
+        messages.put(1L, new Message(1L, "Pierwsza wiadomość", "Tomek"));
+        messages.put(2L, new Message(2L, "Druga wiadomość", "Romek"));
+        messages.put(3L, new Message(3L, "Trzecia wiadomość", "Atomek"));
+    }
+
+    public List<Message> getAllMessages() {
+        return new ArrayList<Message>(messages.values());
     }
     
-    public List<Message> getAllMessages(){
-        return list;
+    public Message getMessage(Long id){
+        return messages.get(id);
     }
+    
+    
 }
