@@ -5,10 +5,10 @@ import java.util.List;
 import model.Message;
 
 
-public class MessageService {
+public class MessageResource {
     private List<Message> list = new ArrayList<>();
     
-    public MessageService(){
+    public MessageResource(){
         Message m1 = new Message(1L, "Pierwsza wiadomość", "Tomek");
         Message m2 = new Message(2L, "Druga wiadomość", "Romek");
         Message m3 = new Message(3L, "Trzecia wiadomość", "Atomek");

@@ -6,22 +6,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import model.Message;
-import resources.MessageService;
+import resources.MessageResource;
 
 @Path("/messages")
-public class MessageResource {
-    MessageService messageService = new MessageService();
+public class MessageService {
+    MessageResource messageResource = new MessageResource();
     
     @GET
     @Produces(MediaType.APPLICATION_XML)
     public List<Message> getText() {
-        return messageService.getAllMessages();
+        return messageResource.getAllMessages();
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getJsons")
     public List<Message> getText2() {
-        return messageService.getAllMessages();
+        return messageResource.getAllMessages();
     }
 }
