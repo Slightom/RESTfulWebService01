@@ -9,20 +9,30 @@ import model.Message;
 public class MessageResource {
 
     static private Map<Long, Message> messages = new HashMap<Long, Message>();
-
+    private long idCounter = 0L;
+    
     public MessageResource() {
-        messages.put(1L, new Message(1L, "Pierwsza wiadomość", "Tomek"));
-        messages.put(2L, new Message(2L, "Druga wiadomość", "Romek"));
-        messages.put(3L, new Message(3L, "Trzecia wiadomość", "Atomek"));
+        messages.put(generateId(), new Message(idCounter, "Pierwsza wiadomość", "Tomek"));
+        messages.put(generateId(), new Message(idCounter, "Druga wiadomość", "Romek"));
+        messages.put(generateId(), new Message(idCounter, "Trzecia wiadomość", "Atomek"));
     }
 
     public List<Message> getAllMessages() {
         return new ArrayList<Message>(messages.values());
     }
-    
-    public Message getMessage(Long id){
+
+    public Message getMessage(Long id) {
         return messages.get(id);
     }
-    
-    
+
+    public Message createMessage(Message message) {
+        message.setId(generateId());
+        messages.put(message.getId(), message);
+        
+        return messages.get(message.getId());
+    }
+
+    private long generateId(){
+        return ++idCounter;
+    }
 }
