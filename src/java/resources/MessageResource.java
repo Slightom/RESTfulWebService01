@@ -12,9 +12,12 @@ public class MessageResource {
     private long idCounter = 0L;
 
     public MessageResource() {
-        messages.put(generateId(), new Message(idCounter, "Pierwsza wiadomość", "Tomek"));
-        messages.put(generateId(), new Message(idCounter, "Druga wiadomość", "Romek"));
-        messages.put(generateId(), new Message(idCounter, "Trzecia wiadomość", "Atomek"));
+        System.out.println("Jestem w konstruktorze" + messages.size());
+        if (messages.size() == 0) {
+            messages.put(generateId(), new Message(idCounter, "Pierwsza wiadomość", "Tomek"));
+            messages.put(generateId(), new Message(idCounter, "Druga wiadomość", "Romek"));
+            messages.put(generateId(), new Message(idCounter, "Trzecia wiadomość", "Atomek"));
+        }
     }
 
     private long generateId() {
@@ -22,6 +25,7 @@ public class MessageResource {
     }
 
     public List<Message> getAllMessages() {
+        System.out.println("Before getAll: " + messages.size());
         return new ArrayList<Message>(messages.values());
     }
 
@@ -39,5 +43,14 @@ public class MessageResource {
     public Message updateMessage(Message message) {
         messages.put(message.getId(), message);
         return messages.get(message.getId());
+    }
+
+    public Message deleteMessage(Long id) {
+        Message m = messages.get(id);
+        System.out.println("Before deleting: " + messages.size());
+        messages.remove(id);
+        System.out.println("After deleting: " + messages.size());
+
+        return m;
     }
 }

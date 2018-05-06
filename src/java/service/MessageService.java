@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -52,5 +53,12 @@ public class MessageService {
     public Message updateMessage(Message message) {
         //return "post test";
         return messageResource.updateMessage(message);
+    }
+    
+    @DELETE
+    @Path("/{messageId}")
+    public Message delete(@PathParam("messageId") Long id){
+        System.out.println(id);
+        return messageResource.deleteMessage(id);
     }
 }
