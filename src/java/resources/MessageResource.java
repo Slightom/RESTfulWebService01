@@ -9,18 +9,18 @@ import model.Message;
 public class MessageResource {
 
     static private Map<Long, Message> messages = new HashMap<Long, Message>();
-    private long idCounter = 0L;
+    private long idCounter;
 
     public MessageResource() {
         if (messages.size() == 0) {
-            messages.put(generateId(), new Message(idCounter, "Pierwsza wiadomość", "Tomek"));
-            messages.put(generateId(), new Message(idCounter, "Druga wiadomość", "Romek"));
-            messages.put(generateId(), new Message(idCounter, "Trzecia wiadomość", "Atomek"));
+            messages.put(1L, new Message(idCounter, "Pierwsza wiadomość", "Tomek"));
+            messages.put(2L, new Message(idCounter, "Druga wiadomość", "Romek"));
+            messages.put(3L, new Message(idCounter, "Trzecia wiadomość", "Atomek"));
         }
     }
 
     private long generateId() {
-        return ++idCounter;
+        return messages.size()+1;
     }
 
     public List<Message> getAllMessages() {
@@ -47,6 +47,7 @@ public class MessageResource {
     }
 
     public Message createMessage(Message message) {
+        System.out.println("jestem w create: " + message.toString());
         message.setId(generateId());
         messages.put(message.getId(), message);
 

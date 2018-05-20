@@ -1,10 +1,11 @@
 package model;
 
+
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Message {
+public class Message{
 
     private long id;
     private String message;
@@ -54,4 +55,7 @@ public class Message {
         this.author = author;
     }
     
+    public String toString(){
+        return "<" +getId() + ", " + getAuthor() + ", " + getCreated() + ", " + getMessage() + ">";
+    }
 }

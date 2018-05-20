@@ -23,7 +23,7 @@ public class MessageService {
 
     // Rest czesc 1
     @GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Message> getText(
             @QueryParam("size") Long size, 
             @HeaderParam("user-agent") String userAgent,
@@ -43,6 +43,7 @@ public class MessageService {
 
     // Rest czesc 2
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/{messageId}")
     public Message getMessage(@PathParam("messageId") Long id) {
         return messageResource.getMessage(id);
@@ -51,6 +52,7 @@ public class MessageService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Message createMessage(Message message) {
+        System.out.println("jestem w poscie: " + message.toString());
         return messageResource.createMessage(message);
     }
 
