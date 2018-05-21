@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("hello")
+//@Path("hello")
 public class HelloWorldService {
 
     // ćwiczenie 1

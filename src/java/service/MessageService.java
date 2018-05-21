@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import model.Message;
 import resources.MessageResource;
 
-@Path("/messages")
+//@Path("/messages")
 public class MessageService {
 
     MessageResource messageResource = new MessageResource();
