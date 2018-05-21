@@ -24,13 +24,10 @@ public class MessageService {
     // Rest czesc 1
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Message> getText(
-            @QueryParam("size") Long size, 
-            @HeaderParam("user-agent") String userAgent,
-            @MatrixParam("author") String author) {
-        System.out.println("size: " + size);
-        System.out.println("HeaderParam: " + userAgent);
-        System.out.println("MatrixParent: " + author);
+    public List<Message> getText(@QueryParam("size") Long size, @HeaderParam("user-agent") String userAgent, @MatrixParam("author") String author) {
+        //System.out.println("size: " + size);
+        //System.out.println("HeaderParam: " + userAgent);
+        //System.out.println("MatrixParent: " + author);
         return messageResource.getAllMessages(size);
     }
 
@@ -68,5 +65,16 @@ public class MessageService {
     @Path("/{messageId}")
     public Message delete(@PathParam("messageId") Long id) {
         return messageResource.deleteMessage(id);
+    }
+
+    @GET
+    @Path("/filtr")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Message> getMessages(@QueryParam("zaczynasie") String par1) {
+        if (par1 != null) {
+            return messageResource.getAllMessagesStartingWith(par1);
+        }
+
+        return messageResource.getAllMessages();
     }
 }

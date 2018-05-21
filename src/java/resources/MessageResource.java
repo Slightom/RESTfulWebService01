@@ -9,18 +9,18 @@ import model.Message;
 public class MessageResource {
 
     static private Map<Long, Message> messages = new HashMap<Long, Message>();
-    private long idCounter;
 
     public MessageResource() {
-        if (messages.size() == 0) {
-            messages.put(1L, new Message(idCounter, "Pierwsza wiadomość", "Tomek"));
-            messages.put(2L, new Message(idCounter, "Druga wiadomość", "Romek"));
-            messages.put(3L, new Message(idCounter, "Trzecia wiadomość", "Atomek"));
+        System.out.println("jestem w konstruktorze Message. mSize:" + messages.size());
+        if (messages.isEmpty()) {
+            messages.put(1L, new Message(1L, "Pierwsza wiadomość", "Tomek"));
+            messages.put(2L, new Message(2L, "Druga wiadomość", "Romek"));
+            messages.put(3L, new Message(3L, "Trzecia wiadomość", "Atomek"));
         }
     }
 
     private long generateId() {
-        return messages.size()+1;
+        return messages.size() + 1;
     }
 
     public List<Message> getAllMessages() {
@@ -53,7 +53,7 @@ public class MessageResource {
 
         return messages.get(message.getId());
     }
-
+ 
     public Message updateMessage(Message message) {
         messages.put(message.getId(), message);
         return messages.get(message.getId());
@@ -63,6 +63,18 @@ public class MessageResource {
         Message m = messages.get(id);
         messages.remove(id);
         return m;
+    }
+
+    public List<Message> getAllMessagesStartingWith(String par1) {
+        Message m;
+        ArrayList<Message> ls = new ArrayList<>();
+        for (Object value : messages.values()) {
+            m = (Message)value;
+            if (m.getMessage().toLowerCase().startsWith(par1.toLowerCase())) {
+                 ls.add(m);
+            }
+        }
+        return ls;
     }
 
 }
