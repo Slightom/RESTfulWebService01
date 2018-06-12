@@ -1,5 +1,7 @@
 package service;
 
+import java.net.URI;
+import model.Message;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,10 +14,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import model.Comment;
-import model.Message;
 import resources.MessageResource;
+
 
 @Path("/messages")
 public class MessageService {
@@ -49,9 +54,15 @@ public class MessageService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Message createMessage(Message message) {
+    public Response createMessage(Message message, @Context UriInfo uriInfo) {
         System.out.println("jestem w poscie: " + message.toString());
-        return messageResource.createMessage(message);
+        
+        Message newMessage = messageResource.createMessage(message);
+        String newId = String.valueOf(newMessage.getId());
+        URI uri = uriInfo.getAbsolutePathBuilder().path(newId).build();
+        Response response = Response.created(uri).entity(newMessage).build();
+        
+        return response;
     }
 
     @PUT
