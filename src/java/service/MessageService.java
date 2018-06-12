@@ -13,10 +13,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import model.Comment;
 import model.Message;
 import resources.MessageResource;
 
-//@Path("/messages")
+@Path("/messages")
 public class MessageService {
 
     MessageResource messageResource = new MessageResource();
@@ -76,5 +77,14 @@ public class MessageService {
         }
 
         return messageResource.getAllMessages();
+    }
+    
+    
+    
+    //rest 4
+    @GET
+    @Path("/{messageId}/comments")
+    public List<Comment> getCommentResource(@PathParam("messageId") Long id) {
+        return CommentService.getInstance().getCommentsFor(id);
     }
 }
