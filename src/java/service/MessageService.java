@@ -3,6 +3,7 @@ package service;
 import java.net.URI;
 import model.Message;
 import java.util.List;
+import javax.ejb.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,10 +25,11 @@ import resources.MessageResource;
 
 
 @Path("/messages")
+@Singleton
 public class MessageService {
 
     MessageResource messageResource = new MessageResource();
-
+    private int counter = 0;
     // Rest czesc 1
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,6 +45,13 @@ public class MessageService {
     @Path("/getJsons")
     public List<Message> getText2() {
         return messageResource.getAllMessages();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/counter")
+    public int counter() {
+        return counter++;
     }
 
     // Rest czesc 2

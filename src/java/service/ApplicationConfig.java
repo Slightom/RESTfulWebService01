@@ -21,6 +21,9 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(filters.LogingFilter.class);
+        resources.add(filters.MyResponseFilter.class);
+        resources.add(filters.SecurityFilter.class);
         resources.add(service.HelloWorldService.class);
         resources.add(service.MessageService.class);
         resources.add(service.ShopService.class);

@@ -4,6 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/service/MessageService.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/filters/MyResponseFilter.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/model/Comment.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/service/ShopService.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/model/Message.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/filters/LogingFilter.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/service/CommentService.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/model/Products.java</file>
+            <file>file:/C:/Users/Slightom/Documents/NetBeansProjects/RESTfulWebService01/src/java/filters/SecurityFilter.java</file>
         </group>
     </open-files>
 </project-private>
