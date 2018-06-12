@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import model.Comment;
+import org.hibernate.validator.constraints.URL;
 import resources.MessageResource;
 
 
@@ -48,8 +49,23 @@ public class MessageService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{messageId}")
-    public Message getMessage(@PathParam("messageId") Long id) {
-        return messageResource.getMessage(id);
+    public Response getMessage(@PathParam("messageId") Long id, @Context UriInfo uriInfo) {
+        Message message = messageResource.getMessage(id);
+
+        String self = uriInfo.getBaseUriBuilder()
+                .path(MessageService.class)
+                .path(String.valueOf(message.getId()))
+                .build().toString();
+        message.addLink("self", self);
+
+        String comments = uriInfo.getBaseUriBuilder()
+                .path(MessageService.class)
+                .path(MessageService.class, "getCommentResource")
+                .resolveTemplate("messageId", message.getId())
+                .build().toString();
+        message.addLink("comments", comments);
+
+        return Response.ok(message).build();
     }
 
     @POST
